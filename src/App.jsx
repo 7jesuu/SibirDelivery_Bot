@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Title, Button } from "./App.styled";
-import { WebApp } from "@twa-dev/sdk";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -16,7 +15,9 @@ function App() {
   };
 
   useEffect(() => {
-    WebApp.ready();
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+    }
     fetchData();
   }, []);
 
